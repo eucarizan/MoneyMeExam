@@ -1,0 +1,87 @@
+<div class="d-flex align-items-center min-vh-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div>
+                    <h1 class="text-center my-4">Quote Calculator</h1>
+                    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+                        <div class="my-4">
+                            <label for="term" class="mb-2 bold">Amount</label>
+                            <ngx-slider formControlName="loan_amount" [options]="loanAmountOptions"
+                                id="amount"></ngx-slider>
+                        </div>
+                        <div class="my-4">
+                            <label for="term" class="mb-2">Term</label>
+                            <ngx-slider formControlName="term" [options]="termOptions" id="term"></ngx-slider>
+                        </div>
+                        <div class="row g-2 my-3">
+                            <div class="col-md-2">
+                                <div class="form-floating">
+                                    <select formControlName="affix" class="form-select" id="floatingSelectGrid"
+                                        aria-label="Floating label select example">
+                                        <option value="mr">Mr.</option>
+                                        <option value="ms">Ms.</option>
+                                        <option value="mrs">Mrs.</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Title</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input formControlName="first_name" type="text" class="form-control" id="firstName"
+                                        placeholder="First Name">
+                                    <label for="firstName">First Name</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input formControlName="last_name" type="text" class="form-control" id="lastName"
+                                        placeholder="Last Name">
+                                    <label for="lastName">Last Name</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row g-2">
+                            <div class="col-md">
+                                <div class="form-floating mb-3">
+                                    <input formControlName="email" type="email" class="form-control" id="floatingInput"
+                                        placeholder="Your email">
+                                    <label for="floatingInput">Email Address</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="form-floating">
+                                    <input formControlName="mobile_number" type="text" class="form-control"
+                                        id="floatingNumber" placeholder="Mobile Number">
+                                    <label for="floatingNumber">Mobile Number</label>
+                                </div>
+                            </div>
+                            <div class="col-md">
+                                <div class="input-group form-floating">
+                                    <input id="dob" class="form-control" placeholder="yyyy-mm-dd"
+                                        aria-label="Date of Birth" aria-describedby="button-addon2" name="dob"
+                                        formControlName="dob" ngbDatepicker #date="ngbDatepicker" [maxDate]="maxDate">
+                                    <label for="dob">Birth Date</label>
+                                    <button class="btn btn-outline-secondary calendar" (click)="date.toggle()"
+                                        type="button" id="button-addon2">Date</button>
+                                </div>
+                            </div>
+
+
+                            <div class="text-center">
+                                <button *ngIf="currentLoanId<0" class="btn btn-success btn-lg mb-3"
+                                    type="submit">Calculate quote</button>
+                                <button *ngIf="currentLoanId>0" class="btn btn-success btn-lg mb-3"
+                                    (click)="updateDb()">Update
+                                    quote</button>
+                                <br>
+                                <span class="text-muted"><small>Quote does not affect your credit score</small></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <app-result></app-result> -->

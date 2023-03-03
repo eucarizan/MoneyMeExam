@@ -1,0 +1,19 @@
+.bottom-border-dotted {
+  border-bottom: 1px dotted black;
+}
+.currency {
+  color: #5bb6d9;
+  font-size: larger;
+  font-weight: 500;
+}
+
+.currency.loan-applied {
+  font-size: x-large !important;
+  font-weight: bold;
+  background-color: #5ab7d9;
+  color: white;
+}
+
+.card-applied {
+  background-color: #8bc7df;
+}

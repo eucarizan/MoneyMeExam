@@ -1,0 +1,119 @@
+<ngb-alert *ngIf="isSuccess" type="info" style="position: absolute; right: 5px; top: 5px">
+    <span style="font-size: larger;">Loan application is successfully submitted!</span>
+</ngb-alert>
+
+<div class="d-flex align-items-center min-vh-100 jumbotron">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-xs-12 col-sm-11 col-lg-6 col-xl-5 card pb-4 rounded-3 shadow-sm px-0">
+                <div class="card-header py-3" [ngClass]="{'card-applied': isSuccess}">
+                    <h3 class="text-center my-2 px-0">{{isSuccess ? 'Application Details' : 'Your Quote'}}</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row g-2 my-1">
+                        <div class="col-md">
+                            <h5>Your information</h5>
+                        </div>
+                        <div class="col-md text-end" *ngIf="!isSuccess">
+                            <a [routerLink]="['/quote', this.details.loanId]">Edit</a>
+                        </div>
+                    </div>
+                    <div class="row g-2 my-1">
+                        <div class="col-md">
+                            <span>Name</span>
+                        </div>
+                        <div class="col-md text-end">
+                            <span>{{this.details.firstName}} {{this.details.lastName}}</span>
+                        </div>
+                    </div>
+                    <div class="row g-2 my-1">
+                        <div class="col-md">
+                            <span>Mobile</span>
+                        </div>
+                        <div class="col-md text-end">
+                            <span>{{this.details.mobile}}</span>
+                        </div>
+                    </div>
+                    <div class="row g-2 my-1">
+                        <div class="col-md">
+                            <span>Email</span>
+                        </div>
+                        <div class="col-md text-end">
+                            <span>{{this.details.email}}</span>
+                        </div>
+                    </div>
+                    <div class="row g-2 my-3">
+                        <div class="col-md">
+                            <h5>Finance details</h5>
+                        </div>
+                        <div class="col-md text-end" *ngIf="!isSuccess">
+                            <a [routerLink]="['/quote', this.details.loanId]">Edit</a>
+                        </div>
+                    </div>
+                    <div class="row g-2 my-1">
+                        <div class="col-md bottom-border-dotted">
+                            <span>Finance Amount</span>
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <span class="currency">{{this.details.amount | currency}}</span>
+                            <br />
+                            <span>over {{this.details.term}} months</span>
+                        </div>
+                    </div>
+                    <div class="row g-2 my-1">
+                        <div class="col-md bottom-border-dotted">
+                            <span>Repayments from</span>
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <span class="currency">{{this.details.weeklyRepayment | currency}}</span>
+                            <br />
+                            <span>weekly</span>
+                        </div>
+                    </div>
+                    <div *ngIf="isSuccess" class="additional-info">
+                        <div class="row g-2 mt-4">
+                            <div class="col-md">
+                                <h5>Additional information</h5>
+                            </div>
+                        </div>
+                        <div class="row g-2 mt-3 mb-1">
+                            <div class="col-md bottom-border-dotted pb-4">
+                                <span>Establishment Fee</span>
+                            </div>
+                            <div class="col-md-3 text-end align-self-end">
+                                <span class="currency">{{300 | currency}}</span>
+                            </div>
+                        </div>
+                        <div class="row g-2 mt-3 mb-1">
+                            <div class="col-md bottom-border-dotted pb-4">
+                                <span>Interest</span>
+                            </div>
+                            <div class="col-md-3 text-end align-self-end">
+                                <span class="currency">{{24 | currency}}</span>
+                            </div>
+                        </div>
+                        <div class="row g-2 mt-3 mb-1">
+                            <div class="col-md bottom-border-dotted pb-4">
+                                <span><strong>Total Repayments</strong></span>
+                            </div>
+                            <div class="col-md-4 text-end align-self-end">
+                                <span class="currency loan-applied badge text-wrap">{{this.details.repaymentAmount | currency}}</span>
+                            </div>
+                        </div>
+                        <div class="mt-5 mb-1 text-center">
+                            <a class="btn btn-success" [routerLink]="['/quote']">Back to home</a>
+                        </div>
+                    </div>
+                    <div *ngIf="!isSuccess">
+                        <div class="text-center mt-5 mb-3">
+                            <button class="btn btn-lg btn-success" (click)="confirm()">Apply now</button>
+                        </div>
+                        <div class="text-center">
+                            <small class="text-muted">Total repayments {{ this.details.totalRepayment | currency }}, made up of an establishment fee of $300.00, interest of {{this.details.paymentInterest | currency}}. The repayment amount is based on the variables selected, is subject to our assessment and suitability, and other important terms and conditions apply.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
